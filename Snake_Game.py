@@ -40,6 +40,16 @@ def draw_snake(snake_block, snake_list):
     for cordinate in snake_list:
         pygame.draw.rect(dis, black, [cordinate[0], cordinate[1], snake_block, snake_block])
 
+# Draw the box barrier
+def draw_box():
+    for i in range (dis_width//snake_block):
+        pygame.draw.rect(dis, red, [(snake_block*i), font_size + 10, snake_block, snake_block])
+        pygame.draw.rect(dis, red, [(snake_block*i), dis_height-snake_block, snake_block, snake_block])
+
+    for i in range ((dis_height - (font_size + 10))//snake_block):
+        pygame.draw.rect(dis, red, [0, ((snake_block*i) + font_size + 10), snake_block, snake_block])
+        pygame.draw.rect(dis, red, [dis_width-snake_block, ((snake_block*i) + font_size + 10), snake_block, snake_block])
+
 # Write a message on screen
 def message(msg, color, x, y):
     mesg = font_style.render(msg, True, color)
@@ -55,6 +65,7 @@ def gameLoop():
     score_factor = 1
     high_score_flag = False
     score_file_name = ""
+    box_reduction = 0
 
     while True: # Select the Game type
         dis.fill(white)
@@ -74,6 +85,7 @@ def gameLoop():
                 if event.key == pygame.K_2:
                     game_type = 2
                     score_factor = 3
+                    box_reduction = 10
                     score_file_name = "high_score_box_barrier.txt"
 
         if game_type != -1 or game_over != False:
@@ -89,8 +101,8 @@ def gameLoop():
     snake_List = []
     Length_of_snake = 1
 
-    foodx = int(round(random.randrange(0, dis_width - snake_block) / 10.0) * 10)
-    foody = int(round(random.randrange(font_size + 10, dis_height - snake_block) / 10.0) * 10)
+    foodx = int(round(random.randrange(box_reduction, dis_width - snake_block - box_reduction) / 10.0) * 10)
+    foody = int(round(random.randrange(font_size + box_reduction + 10, dis_height - snake_block - box_reduction) / 10.0) * 10)
 
     prev_key = pygame.K_0
 
@@ -174,9 +186,10 @@ def gameLoop():
                 
         elif game_type == 2:    # Box Barrier
             dis.fill(yellow)
+            draw_box()
             message("Box barrier", blue, 0, 0)
             
-            if x >= dis_width or x < 0 or y >= dis_height or y < font_size + 10:
+            if x >= (dis_width - snake_block) or x < snake_block or y >= (dis_height - snake_block) or y < (font_size + snake_block + 10):
                 game_close = True
                 
         message("Your Score : " + str(score), green, dis_width - 200, 0)    # Display realtime score
@@ -203,8 +216,8 @@ def gameLoop():
 
         # Snake ate food
         if x == foodx and y == foody:
-            foodx = int(round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0)
-            foody = int(round(random.randrange(font_size + 10, dis_height - snake_block) / 10.0) * 10.0)
+            foodx = int(round(random.randrange(box_reduction, dis_width - snake_block - box_reduction) / 10.0) * 10)
+            foody = int(round(random.randrange(font_size + box_reduction + 10, dis_height - snake_block - box_reduction) / 10.0) * 10)
             Length_of_snake += 1
             score += int(snake_speed / score_factor)
 
