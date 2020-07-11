@@ -20,7 +20,7 @@ dis_width = 600
 dis_height = 400 + font_size
  
 dis = pygame.display.set_mode((dis_width, dis_height))
-pygame.display.set_caption('pygame test')
+pygame.display.set_caption("Snake Game")
  
 clock = pygame.time.Clock()
  
