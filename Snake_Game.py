@@ -156,7 +156,7 @@ def change_game_level():
                         change_configs()
                     changed = True
 
-# Shoe High score
+# Show High score
 def high_score():
     show = True
     score_file_name = ("high_score_no_barrier.txt" if configs["Game"]["Type"] == 0 else "high_score_box_barrier.txt")
