@@ -1,5 +1,5 @@
 ## Created by : Sumudu Madushanka
-## Last update : 8/4/2020
+## Last update : 8/5/2020
 
 import pygame
 from time import sleep
@@ -7,45 +7,35 @@ from random import randrange
 from Message import message
 from Basic_game_functions import draw_snake
 
-# Draw the Tunnel
-def draw_tunnel(dis, dis_width, dis_height, snake_block, box_color, font_size, barrier_grid):
+# Create the Tunnel
+def create_tunnel(dis, dis_width, dis_height, snake_block, font_size, barrier_grid):
     tun_width = dis_width//4
     tun_height = (dis_height - (font_size + 10))//4
     
     for i in range (tun_width//snake_block):
-        pygame.draw.rect(dis, box_color, [(snake_block * i), font_size + 10, snake_block, snake_block])
         barrier_grid.append([(snake_block * i), font_size + 10])
-        
-        pygame.draw.rect(dis, box_color, [(snake_block * i), dis_height - snake_block, snake_block, snake_block])
         barrier_grid.append([(snake_block * i), dis_height - snake_block])
 
     for i in range (tun_width//snake_block, (3*tun_width)//snake_block):
-        pygame.draw.rect(dis, box_color, [(snake_block * i), ((tun_height//snake_block) * snake_block) + font_size + 10, snake_block, snake_block])
         barrier_grid.append([(snake_block * i), ((tun_height//snake_block) * snake_block) + font_size + 10])
-        
-        pygame.draw.rect(dis, box_color, [(snake_block * i), ((3 * (tun_height//snake_block)) * snake_block) + font_size + 10, snake_block, snake_block])
         barrier_grid.append([(snake_block * i), ((3 * (tun_height//snake_block)) * snake_block) + font_size + 10])
     
     for i in range ((3*tun_width)//snake_block, dis_width//snake_block):
-        pygame.draw.rect(dis, box_color, [(snake_block * i), font_size + 10, snake_block, snake_block])
         barrier_grid.append([(snake_block * i), font_size + 10])
-        
-        pygame.draw.rect(dis, box_color, [(snake_block * i), dis_height - snake_block, snake_block, snake_block])
         barrier_grid.append([(snake_block * i), dis_height - snake_block])
 
     for i in range (tun_height//snake_block):
-        pygame.draw.rect(dis, box_color, [0, ((snake_block * i) + font_size + 10), snake_block, snake_block])
-        barrier_grid.append([0, ((snake_block * i) + font_size + 10)])
-        
-        pygame.draw.rect(dis, box_color, [dis_width - snake_block, ((snake_block * i) + font_size + 10), snake_block, snake_block])
+        barrier_grid.append([0, ((snake_block * i) + font_size + 10)])        
         barrier_grid.append([dis_width - snake_block, ((snake_block * i) + font_size + 10)])
         
     for i in range (3*tun_height//snake_block, (dis_height - (font_size + 10))//snake_block):
-        pygame.draw.rect(dis, box_color, [0, ((snake_block * i) + font_size + 10), snake_block, snake_block])
         barrier_grid.append([0, ((snake_block * i) + font_size + 10)])
-        
-        pygame.draw.rect(dis, box_color, [dis_width - snake_block, ((snake_block * i) + font_size + 10), snake_block, snake_block])
         barrier_grid.append([dis_width - snake_block, ((snake_block * i) + font_size + 10)])
+
+# Draw the Tunnel
+def draw_tunnel(dis, snake_block, box_color, barrier_grid):
+    for cordinate in barrier_grid:
+        pygame.draw.rect(dis, box_color, [cordinate[0], cordinate[1], snake_block, snake_block])
 
 # Game Function : Tunnel
 def game_loop_tunnel(dis, configs, clock):
@@ -81,6 +71,9 @@ def game_loop_tunnel(dis, configs, clock):
     barrier_grid = []
     Length_of_snake = 1
 
+    bg_color = lightgreen
+    create_tunnel(dis, dis_width, dis_height, snake_block, font_size, barrier_grid)
+    
     foodx = int(round(randrange(0, dis_width - snake_block) / 10.0) * 10)
     foody = int(round(randrange(font_size + 10, dis_height - snake_block) / 10.0) * 10)
     while [foodx, foody] in barrier_grid:
@@ -114,9 +107,8 @@ def game_loop_tunnel(dis, configs, clock):
         elif direction[3]:
             x += snake_block
 
-        bg_color = lightgreen
         dis.fill(bg_color)
-        draw_tunnel(dis, dis_width, dis_height, snake_block, darkblue, font_size, barrier_grid)
+        draw_tunnel(dis, snake_block, darkblue, barrier_grid)
         message(dis, font_size, "Tunnel", black, bg_color, 10, 0)
 
         if [x, y] in barrier_grid:

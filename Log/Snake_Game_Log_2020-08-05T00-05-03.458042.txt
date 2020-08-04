@@ -1,0 +1,25 @@
+2020-08-05T00:05:03.458042||Snake Game Log
+2020-08-05T00:05:03.458042||Log File Created
+2020-08-05T00:05:03.458949||Import basic game funcrions
+2020-08-05T00:05:03.458949||Loading Configurations...
+2020-08-05T00:05:03.459698||Load Configurations Completed
+2020-08-05T00:05:03.756252||pygame init completed
+2020-08-05T00:05:03.757247||Start Global Variables init...
+2020-08-05T00:05:03.912582||Display init completed
+2020-08-05T00:05:03.912582||Colour Init Completed
+2020-08-05T00:05:03.913577||Font Init Completed
+2020-08-05T00:05:03.913577||Clock init completed
+2020-08-05T00:05:03.913577||Global Variables init completed
+2020-08-05T00:05:03.913577||Starting Game...
+2020-08-05T00:05:03.914574||Start Init Game variables...
+2020-08-05T00:05:03.914574||Init Game variables Completed
+2020-08-05T00:05:05.048602||Select Start Game
+2020-08-05T00:05:28.842629||Select Game Type
+2020-08-05T00:05:29.953511||Select Tunnel
+2020-08-05T00:05:29.954503||Changed the configurations
+2020-08-05T00:05:30.858057||Select Start Game
+2020-08-05T00:05:57.776601||Select Quit Game
+2020-08-05T00:05:57.776601||Quiting the Game...
+2020-08-05T00:05:58.198302||Game Quit
+2020-08-05T00:05:58.198302||Game finished
+2020-08-05T00:05:58.199300||Log finished

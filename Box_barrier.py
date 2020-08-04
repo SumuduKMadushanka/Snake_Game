@@ -1,5 +1,5 @@
 ## Created by : Sumudu Madushanka
-## Last update : 8/4/2020
+## Last update : 8/5/2020
 
 ### Game Box Barrier ###
 import pygame
@@ -8,15 +8,20 @@ from random import randrange
 from Message import message
 from Basic_game_functions import draw_snake
 
-# Draw the box barrier
-def draw_box(dis, dis_width, dis_height, snake_block, box_color, font_size):
+# Create the box barrier
+def create_box(dis, dis_width, dis_height, snake_block, font_size, barrier_grid):
     for i in range (dis_width//snake_block):
-        pygame.draw.rect(dis, box_color, [(snake_block * i), font_size + 10, snake_block, snake_block])
-        pygame.draw.rect(dis, box_color, [(snake_block * i), dis_height - snake_block, snake_block, snake_block])
+        barrier_grid.append([snake_block * i, font_size + 10])
+        barrier_grid.append([snake_block * i, dis_height - snake_block])
 
     for i in range ((dis_height - (font_size + 10))//snake_block):
-        pygame.draw.rect(dis, box_color, [0, ((snake_block * i) + font_size + 10), snake_block, snake_block])
-        pygame.draw.rect(dis, box_color, [dis_width - snake_block, ((snake_block * i) + font_size + 10), snake_block, snake_block])
+        barrier_grid.append([0, ((snake_block * i) + font_size + 10)])
+        barrier_grid.append([dis_width - snake_block, ((snake_block * i) + font_size + 10)])
+
+# Draw the box barrier
+def draw_box(dis, snake_block, box_color, barrier_grid):
+    for cordinate in barrier_grid:
+        pygame.draw.rect(dis, box_color, [cordinate[0], cordinate[1], snake_block, snake_block])
 
 # Game Function : Box Barrier
 def game_loop_box_barrier(dis, configs, clock):
@@ -49,10 +54,17 @@ def game_loop_box_barrier(dis, configs, clock):
     y = int((dis_height - font_size) / 2) + font_size
 
     snake_List = []
+    barrier_grid = []
     Length_of_snake = 1
 
-    foodx = int(round(randrange(box_reduction, dis_width - snake_block - box_reduction) / 10.0) * 10)
-    foody = int(round(randrange(font_size + box_reduction + 10, dis_height - snake_block - box_reduction) / 10.0) * 10)
+    bg_color = lightyellow
+    create_box(dis, dis_width, dis_height, snake_block, font_size, barrier_grid)
+
+    foodx = int(round(randrange(0, dis_width - snake_block) / 10.0) * 10)
+    foody = int(round(randrange(font_size + 10, dis_height - snake_block) / 10.0) * 10)
+    while [foodx, foody] in barrier_grid:
+        foodx = int(round(randrange(0, dis_width - snake_block) / 10.0) * 10)
+        foody = int(round(randrange(font_size + 10, dis_height - snake_block) / 10.0) * 10)
 
     direction = [False, False, False, False]    #[Left, Up, Down, Right]
 
@@ -81,12 +93,12 @@ def game_loop_box_barrier(dis, configs, clock):
         elif direction[3]:
             x += snake_block
 
-        bg_color = lightyellow
+        
         dis.fill(bg_color)
-        draw_box(dis, dis_width, dis_height, snake_block, red, font_size)
+        draw_box(dis, snake_block, red, barrier_grid)
         message(dis, font_size, "Box barrier", blue, bg_color, 10, 0)
         
-        if x >= (dis_width - snake_block) or x < snake_block or y >= (dis_height - snake_block) or y < (font_size + snake_block + 10):
+        if [x, y] in barrier_grid:
             game_close = True
                 
         message(dis, font_size, "Your Score : " + str(score), green, bg_color, dis_width - 200, 0)    # Display realtime score
@@ -113,8 +125,11 @@ def game_loop_box_barrier(dis, configs, clock):
 
         # Snake ate food
         if x == foodx and y == foody:
-            foodx = int(round(randrange(box_reduction, dis_width - snake_block - box_reduction) / 10.0) * 10)
-            foody = int(round(randrange(font_size + box_reduction + 10, dis_height - snake_block - box_reduction) / 10.0) * 10)
+            foodx = int(round(randrange(0, dis_width - snake_block) / 10.0) * 10)
+            foody = int(round(randrange(font_size + 10, dis_height - snake_block) / 10.0) * 10)
+            while [foodx, foody] in barrier_grid:
+                foodx = int(round(randrange(0, dis_width - snake_block) / 10.0) * 10)
+                foody = int(round(randrange(font_size + 10, dis_height - snake_block) / 10.0) * 10)
             Length_of_snake += 1
             score += score_unit
 

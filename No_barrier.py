@@ -37,6 +37,8 @@ def game_loop_no_barrier(dis, configs, clock):
 
     snake_List = []
     Length_of_snake = 1
+    
+    bg_color = white
 
     foodx = int(round(randrange(0, dis_width - snake_block) / 10.0) * 10)
     foody = int(round(randrange(font_size + 10, dis_height - snake_block) / 10.0) * 10)
@@ -68,8 +70,6 @@ def game_loop_no_barrier(dis, configs, clock):
         elif direction[3]:
             x += snake_block
 
-        # Barrier Logic
-        bg_color = white
         dis.fill(bg_color)
         message(dis, font_size, "No barrier", blue, bg_color, 10, 0)
         
