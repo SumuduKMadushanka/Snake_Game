@@ -14,7 +14,7 @@ def change_game_type(dis, configs, config_file_name):
     while not change_item:
         dis.fill(configs["Colour"]["White"])
         message(dis, configs["Font"]["Size"], "Game Type", configs["Colour"]["Green"], configs["Colour"]["White"], configs["Display"]["Width"]/3, ((configs["Display"]["Height"] - configs["Font"]["Size"])/3 + configs["Font"]["Size"]))
-        item_list = ["No Barrier", "Box Barrier"]
+        item_list = ["No Barrier", "Box Barrier", "Tunnel"]
         for i in range(len(item_list)):
             if (select_item == i):
                 f_colour = configs["Colour"]["White"]
@@ -71,7 +71,13 @@ def change_game_level(dis, configs, config_file_name):
 # Show High score
 def high_score(dis, game_type, bg_color, font_color, font_size, dis_width, dis_height):
     show = True
-    score_file_name = ("high_score_no_barrier.txt" if game_type == 0 else "high_score_box_barrier.txt")
+    if game_type == 0:
+        score_file_name = "high_score_no_barrier.txt"
+    elif game_type == 1:
+        score_file_name = "high_score_box_barrier.txt"
+    elif game_type == 2:
+        score_file_name = "high_score_tunnel.txt"
+        
     while show:
         dis.fill(bg_color)
         try:

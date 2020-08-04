@@ -23,7 +23,9 @@ def load_configs(config_file_name):
                              "LightYellow" : (255, 255, 224),
                              "Red" : (255, 0, 0),
                              "Green" : (0, 255, 0),
-                             "Blue" : (0, 0, 255)}
+                             "LightGreen" : (144, 238, 144),
+                             "Blue" : (0, 0, 255),
+                             "DarkBlue" : (0, 0, 139)}
         configs["Font"] = {"Size" : 30}
         configs["Snake"] = {"Block" : 10}
         configs["Display"] = {"Width" : 600,

@@ -86,9 +86,12 @@ def main_loop():
                         if configs["Game"]["Type"] == 0:
                             import No_barrier
                             No_barrier.game_loop_no_barrier(dis, configs, clock)
-                        else:
+                        elif configs["Game"]["Type"] == 1:
                             import Box_barrier
                             Box_barrier.game_loop_box_barrier(dis, configs, clock)
+                        elif configs["Game"]["Type"] == 2:
+                            import Tunnel
+                            Tunnel.game_loop_tunnel(dis, configs, clock)
                     elif select_item == 1:
                         change_game_type(dis, configs, config_file_name)
                     elif select_item == 2:

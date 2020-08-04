@@ -1,22 +1,25 @@
-2020-08-04T20:25:40.166367||Snake Game Log
-2020-08-04T20:25:40.166367||Log File Created
-2020-08-04T20:25:40.166367||Import basic game funcrions
-2020-08-04T20:25:40.166367||Loading Configurations...
-2020-08-04T20:25:40.166367||Load Configurations Completed
-2020-08-04T20:25:40.614944||pygame init completed
-2020-08-04T20:25:40.614944||Start Global Variables init...
-2020-08-04T20:25:40.723697||Display init completed
-2020-08-04T20:25:40.723697||Colour Init Completed
-2020-08-04T20:25:40.723697||Font Init Completed
-2020-08-04T20:25:40.724694||Clock init completed
-2020-08-04T20:25:40.724694||Global Variables init completed
-2020-08-04T20:25:40.724694||Starting Game...
-2020-08-04T20:25:40.724694||Start Init Game variables...
-2020-08-04T20:25:40.724694||Init Game variables Completed
-2020-08-04T20:25:43.227359||Select Start Game
-2020-08-04T20:27:04.883235||Select High Score
-2020-08-04T20:27:06.649338||Select Quit Game
-2020-08-04T20:27:06.650363||Quiting the Game...
-2020-08-04T20:27:06.929617||Game Quit
-2020-08-04T20:27:06.929617||Game finished
-2020-08-04T20:27:06.930615||Log finished
+2020-08-04T23:32:58.166912||Snake Game Log
+2020-08-04T23:32:58.166912||Log File Created
+2020-08-04T23:32:58.167976||Import basic game funcrions
+2020-08-04T23:32:58.168867||Loading Configurations...
+2020-08-04T23:32:58.169981||Load Configurations Completed
+2020-08-04T23:32:58.482580||pygame init completed
+2020-08-04T23:32:58.483628||Start Global Variables init...
+2020-08-04T23:32:58.605707||Display init completed
+2020-08-04T23:32:58.605707||Colour Init Completed
+2020-08-04T23:32:58.605707||Font Init Completed
+2020-08-04T23:32:58.606705||Clock init completed
+2020-08-04T23:32:58.606705||Global Variables init completed
+2020-08-04T23:32:58.606705||Starting Game...
+2020-08-04T23:32:58.606705||Start Init Game variables...
+2020-08-04T23:32:58.606705||Init Game variables Completed
+2020-08-04T23:32:59.396857||Select Start Game
+2020-08-04T23:33:11.453008||Select Game Type
+2020-08-04T23:33:12.325550||Select No Barrier
+2020-08-04T23:33:12.326546||Changed the configurations
+2020-08-04T23:33:13.816403||Select Start Game
+2020-08-04T23:33:36.647338||Select Quit Game
+2020-08-04T23:33:36.648368||Quiting the Game...
+2020-08-04T23:33:36.922609||Game Quit
+2020-08-04T23:33:36.923606||Game finished
+2020-08-04T23:33:36.923606||Log finished
