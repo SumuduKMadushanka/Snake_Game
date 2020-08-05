@@ -1,10 +1,10 @@
 ## Created by : Sumudu Madushanka
-## Last update : 8/4/2020
+## Last update : 8/5/2020
 
 from log import *
 from Config import *
 from Message import *
-from Basic_game_functions import change_game_type, change_game_level, high_score
+from Basic_game_functions import *
 import pygame
 
 init_log_file()
@@ -84,14 +84,9 @@ def main_loop():
                         game_over = True
                     elif select_item == 0:
                         if configs["Game"]["Type"] == 0:
-                            import No_barrier
-                            No_barrier.game_loop_no_barrier(dis, configs, clock)
-                        elif configs["Game"]["Type"] == 1:
-                            import Box_barrier
-                            Box_barrier.game_loop_box_barrier(dis, configs, clock)
-                        elif configs["Game"]["Type"] == 2:
-                            import Tunnel
-                            Tunnel.game_loop_tunnel(dis, configs, clock)
+                            game_loop_no_barrier(dis, configs, clock)
+                        else:
+                            game_loop(dis, configs, clock)
                     elif select_item == 1:
                         change_game_type(dis, configs, config_file_name)
                     elif select_item == 2:

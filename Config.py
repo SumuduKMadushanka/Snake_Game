@@ -1,5 +1,5 @@
 ## Created by : Sumudu Madushanka
-## Last update : 8/4/2020
+## Last update : 8/5/2020
 
 import json
 from log import log_write
@@ -31,7 +31,32 @@ def load_configs(config_file_name):
         configs["Display"] = {"Width" : 600,
                               "Height" : 400 + configs["Font"]["Size"]}
         configs["Game"] = {"Type" : 0,
-                           "Level" : 3}
+                           "Level" : 3,
+                           "Colour_Code" : [
+                               {
+                                   "Snake" : "Black",
+                                   "Food" : "Green",
+                                   "Type" : "Blue",
+                                   "Score" : "Green",
+                                   "Background" : "White"
+                               },
+                               {
+                                   "Snake" : "Black",
+                                   "Food" : "Green",
+                                   "Type" : "Blue",
+                                   "Score" : "Green",
+                                   "Background" : "LightYellow",
+                                   "Barrier" : "Red"
+                               },
+                               {
+                                   "Snake" : "Red",
+                                   "Food" : "Yellow",
+                                   "Type" : "Black",
+                                   "Score" : "Yellow",
+                                   "Background" : "LightGreen",
+                                   "Barrier" : "DarkBlue"
+                               }
+                           ]}
         
         config_file = open(config_file_name, "w")
         json.dump(configs, config_file, indent = 4)

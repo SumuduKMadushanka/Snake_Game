@@ -58,6 +58,31 @@
     },
     "Game": {
         "Type": 0,
-        "Level": 3
+        "Level": 3,
+        "Colour_Code": [
+            {
+                "Snake": "Black",
+                "Food": "Green",
+                "Type": "Blue",
+                "Score": "Green",
+                "Background": "White"
+            },
+            {
+                "Snake": "Black",
+                "Food": "Green",
+                "Type": "Blue",
+                "Score": "Green",
+                "Background": "LightYellow",
+                "Barrier": "Red"
+            },
+            {
+                "Snake": "Red",
+                "Food": "Yellow",
+                "Type": "Black",
+                "Score": "Yellow",
+                "Background": "LightGreen",
+                "Barrier": "DarkBlue"
+            }
+        ]
     }
 }
