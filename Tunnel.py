@@ -5,7 +5,7 @@ import pygame
 from time import sleep
 from random import randrange
 from Message import message
-from Basic_game_functions import draw_snake
+from Basic_game_functions import draw_snake, draw_barrier, init_food, update_high_score
 
 # Create the Tunnel
 def create_tunnel(dis, dis_width, dis_height, snake_block, font_size, barrier_grid):
@@ -32,11 +32,6 @@ def create_tunnel(dis, dis_width, dis_height, snake_block, font_size, barrier_gr
         barrier_grid.append([0, ((snake_block * i) + font_size + 10)])
         barrier_grid.append([dis_width - snake_block, ((snake_block * i) + font_size + 10)])
 
-# Draw the Tunnel
-def draw_tunnel(dis, snake_block, box_color, barrier_grid):
-    for cordinate in barrier_grid:
-        pygame.draw.rect(dis, box_color, [cordinate[0], cordinate[1], snake_block, snake_block])
-
 # Game Function : Tunnel
 def game_loop_tunnel(dis, configs, clock):
     # Basic Variables
@@ -62,7 +57,6 @@ def game_loop_tunnel(dis, configs, clock):
     high_score_flag = False
     score_file_name = "high_score_tunnel.txt"
 
-
     # Initial state of the game
     x = int(dis_width / 2)
     y = int((dis_height - font_size) / 2) + font_size
@@ -74,12 +68,8 @@ def game_loop_tunnel(dis, configs, clock):
     bg_color = lightgreen
     create_tunnel(dis, dis_width, dis_height, snake_block, font_size, barrier_grid)
     
-    foodx = int(round(randrange(0, dis_width - snake_block) / 10.0) * 10)
-    foody = int(round(randrange(font_size + 10, dis_height - snake_block) / 10.0) * 10)
-    while [foodx, foody] in barrier_grid:
-        foodx = int(round(randrange(0, dis_width - snake_block) / 10.0) * 10)
-        foody = int(round(randrange(font_size + 10, dis_height - snake_block) / 10.0) * 10)
-
+    food = init_food(dis_width, dis_height, font_size, snake_block, barrier_grid)
+    
     direction = [False, False, False, False]    #[Left, Up, Down, Right]
 
     #Game loop
@@ -108,7 +98,7 @@ def game_loop_tunnel(dis, configs, clock):
             x += snake_block
 
         dis.fill(bg_color)
-        draw_tunnel(dis, snake_block, darkblue, barrier_grid)
+        draw_barrier(dis, snake_block, darkblue, barrier_grid)
         message(dis, font_size, "Tunnel", black, bg_color, 10, 0)
 
         if [x, y] in barrier_grid:
@@ -124,7 +114,7 @@ def game_loop_tunnel(dis, configs, clock):
                 
         message(dis, font_size, "Your Score : " + str(score), yellow, bg_color, dis_width - 200, 0)    # Display realtime score
         
-        pygame.draw.rect(dis, yellow, [foodx, foody, snake_block, snake_block])  # Food
+        pygame.draw.rect(dis, yellow, [food[0], food[1], snake_block, snake_block])  # Food
 
         # Creating snake
         snake_Head = []
@@ -145,38 +135,18 @@ def game_loop_tunnel(dis, configs, clock):
         pygame.display.update()
 
         # Snake ate food
-        if x == foodx and y == foody:
-            foodx = int(round(randrange(0, dis_width - snake_block) / 10.0) * 10)
-            foody = int(round(randrange(font_size + 10, dis_height - snake_block) / 10.0) * 10)
-            while [foodx, foody] in barrier_grid:
-                foodx = int(round(randrange(0, dis_width - snake_block) / 10.0) * 10)
-                foody = int(round(randrange(font_size + 10, dis_height - snake_block) / 10.0) * 10)
+        if x == food[0] and y == food[1]:
+            food = init_food(dis_width, dis_height, font_size, snake_block, barrier_grid)
             Length_of_snake += 1
             score += score_unit
 
         clock.tick(score_unit * 5)
 
     # Game over
+    sleep(2)
     # High Score
     dis.fill(white)
-    try:
-        score_file = open(score_file_name, "r")
-        high_score = int(score_file.read())
-        score_file.close()
-    except IOError:
-        high_score = 0
-        
-    if score > high_score or high_score_flag:
-        message(dis, font_size, "High Score : " + str(score), blue, white, dis_width/3, (dis_height - font_size)/3 + font_size)
-        high_score = score
-        high_score_flag = True
-    else:
-        message(dis, font_size, "Your Score : " + str(score), blue, white, dis_width/3, (dis_height - font_size)/3 + font_size)
-        high_score_flag = False
-
-    score_file = open(score_file_name, "w")
-    score_file.write(str(high_score))
-    score_file.close()
+    update_high_score(dis, dis_width, dis_height, score_file_name, score, font_size, blue, white)
 
     message(dis, font_size, "Game Over!", red, white, dis_width/3, ((dis_height - font_size)/3 + 2 * font_size))
     pygame.display.update()

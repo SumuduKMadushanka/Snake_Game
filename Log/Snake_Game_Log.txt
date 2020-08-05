@@ -1,25 +1,35 @@
-2020-08-05T00:23:34.600247||Snake Game Log
-2020-08-05T00:23:34.600247||Log File Created
-2020-08-05T00:23:34.601245||Import basic game funcrions
-2020-08-05T00:23:34.601245||Loading Configurations...
-2020-08-05T00:23:34.601245||Load Configurations Completed
-2020-08-05T00:23:34.866791||pygame init completed
-2020-08-05T00:23:34.867771||Start Global Variables init...
-2020-08-05T00:23:34.973488||Display init completed
-2020-08-05T00:23:34.973488||Colour Init Completed
-2020-08-05T00:23:34.973488||Font Init Completed
-2020-08-05T00:23:34.974487||Clock init completed
-2020-08-05T00:23:34.974487||Global Variables init completed
-2020-08-05T00:23:34.974487||Starting Game...
-2020-08-05T00:23:34.974487||Start Init Game variables...
-2020-08-05T00:23:34.974487||Init Game variables Completed
-2020-08-05T00:23:37.511276||Select Start Game
-2020-08-05T00:24:06.343284||Select Game Type
-2020-08-05T00:24:07.261873||Select No Barrier
-2020-08-05T00:24:07.262832||Changed the configurations
-2020-08-05T00:24:08.079775||Select Start Game
-2020-08-05T00:25:08.096180||Select Quit Game
-2020-08-05T00:25:08.096180||Quiting the Game...
-2020-08-05T00:25:08.302855||Game Quit
-2020-08-05T00:25:08.303853||Game finished
-2020-08-05T00:25:08.303853||Log finished
+2020-08-05T12:30:02.638845||Snake Game Log
+2020-08-05T12:30:02.638845||Log File Created
+2020-08-05T12:30:02.638845||Import basic game funcrions
+2020-08-05T12:30:02.638845||Loading Configurations...
+2020-08-05T12:30:02.638845||Load Configurations Completed
+2020-08-05T12:30:03.061505||pygame init completed
+2020-08-05T12:30:03.062544||Start Global Variables init...
+2020-08-05T12:30:03.178215||Display init completed
+2020-08-05T12:30:03.179185||Colour Init Completed
+2020-08-05T12:30:03.179185||Font Init Completed
+2020-08-05T12:30:03.179185||Clock init completed
+2020-08-05T12:30:03.179185||Global Variables init completed
+2020-08-05T12:30:03.180218||Starting Game...
+2020-08-05T12:30:03.180218||Start Init Game variables...
+2020-08-05T12:30:03.180218||Init Game variables Completed
+2020-08-05T12:30:04.117642||Select Game Type
+2020-08-05T12:30:10.190060||Select No Barrier
+2020-08-05T12:30:10.191058||Changed the configurations
+2020-08-05T12:30:11.372525||Select Start Game
+2020-08-05T12:31:36.244572||Select Game Type
+2020-08-05T12:31:37.204546||Select Box Barrier
+2020-08-05T12:31:37.204546||Changed the configurations
+2020-08-05T12:31:38.076193||Select Start Game
+2020-08-05T12:31:49.925532||Select Game Type
+2020-08-05T12:31:50.900626||Select Tunnel
+2020-08-05T12:31:50.901623||Changed the configurations
+2020-08-05T12:31:51.757550||Select Start Game
+2020-08-05T12:32:19.045382||Select Game Type
+2020-08-05T12:32:20.011391||Select No Barrier
+2020-08-05T12:32:20.012388||Changed the configurations
+2020-08-05T12:32:21.284779||Select Quit Game
+2020-08-05T12:32:21.284779||Quiting the Game...
+2020-08-05T12:32:21.582968||Game Quit
+2020-08-05T12:32:21.582968||Game finished
+2020-08-05T12:32:21.583966||Log finished

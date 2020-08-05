@@ -1,7 +1,8 @@
 ## Created by : Sumudu Madushanka
-## Last update : 8/4/2020
+## Last update : 8/5/2020
 
 import pygame
+from random import randrange
 from log import log_write
 from Message import message
 from Config import change_configs
@@ -94,8 +95,49 @@ def high_score(dis, game_type, bg_color, font_color, font_size, dis_width, dis_h
             if event.type == pygame.QUIT or (event.type == pygame.KEYUP and (event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER)):
                 show = False
 
+# Update High Score
+def update_high_score(dis, dis_width, dis_height, score_file_name, score, font_size, font_colour, bg_colour):
+    high_score_flag = False
+    try:
+        score_file = open(score_file_name, "r")
+        high_score = int(score_file.read())
+        score_file.close()
+    except IOError:
+        high_score = 0
+        
+    if score > high_score or high_score_flag:
+        message(dis, font_size, "High Score : " + str(score), font_colour, bg_colour, dis_width/3, (dis_height - font_size)/3 + font_size)
+        high_score = score
+        high_score_flag = True
+    else:
+        message(dis, font_size, "Your Score : " + str(score), font_colour, bg_colour, dis_width/3, (dis_height - font_size)/3 + font_size)
+        high_score_flag = False
+
+    score_file = open(score_file_name, "w")
+    score_file.write(str(high_score))
+    score_file.close()
+
 # Draw the snake
 def draw_snake(dis, snake_block, snake_list, Snake_colour):
     for cordinate in snake_list:
         pygame.draw.rect(dis, Snake_colour, [cordinate[0], cordinate[1], snake_block, snake_block])
         
+# Draw the barrier
+def draw_barrier(dis, snake_block, colour, barrier_grid):
+    for cordinate in barrier_grid:
+        pygame.draw.rect(dis, colour, [cordinate[0], cordinate[1], snake_block, snake_block])
+# Init Food No Barrier
+def init_food_no_barrier(dis_width, dis_height, font_size, snake_block):
+    food = []
+    foodx = round(randrange(0, dis_width - snake_block) // 10.0) * 10
+    foody = round(randrange(font_size + 10, dis_height - snake_block) // 10.0) * 10
+    food.append(foodx)
+    food.append(foody)
+    return food
+
+# Init Food
+def init_food(dis_width, dis_height, font_size, snake_block, barrier_grid):
+    food = init_food_no_barrier(dis_width, dis_height, font_size, snake_block)
+    while (food in barrier_grid):
+        food = init_food_no_barrier(dis_width, dis_height, font_size, snake_block)
+    return food
