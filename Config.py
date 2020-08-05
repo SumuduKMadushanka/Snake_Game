@@ -55,6 +55,14 @@ def load_configs(config_file_name):
                                    "Score" : "Yellow",
                                    "Background" : "LightGreen",
                                    "Barrier" : "DarkBlue"
+                               },
+                               {
+                                   "Snake" : "Green",
+                                   "Food" : "Yellow",
+                                   "Type" : "LightYellow",
+                                   "Score" : "Yellow",
+                                   "Background" : "Black",
+                                   "Barrier" : "Red"
                                }
                            ]}
         

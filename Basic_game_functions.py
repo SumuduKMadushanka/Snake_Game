@@ -16,7 +16,7 @@ def change_game_type(dis, configs, config_file_name):
     while not change_item:
         dis.fill(configs["Colour"]["White"])
         message(dis, configs["Font"]["Size"], "Game Type", configs["Colour"]["Green"], configs["Colour"]["White"], configs["Display"]["Width"]/3, ((configs["Display"]["Height"] - configs["Font"]["Size"])/3 + configs["Font"]["Size"]))
-        item_list = ["No Barrier", "Box Barrier", "Tunnel"]
+        item_list = ["No Barrier", "Box Barrier", "Tunnel", "Rail"]
         for i in range(len(item_list)):
             if (select_item == i):
                 f_colour = configs["Colour"]["White"]
@@ -79,6 +79,8 @@ def high_score(dis, game_type, bg_colour, font_color, font_size, dis_width, dis_
         score_file_name = "high_score_box_barrier.txt"
     elif game_type == 2:
         score_file_name = "high_score_tunnel.txt"
+    elif game_type == 3:
+        score_file_name = "high_score_rail.txt"
         
     while show:
         dis.fill(bg_colour)
@@ -308,6 +310,12 @@ def game_loop(dis, configs, clock):
         game_type = "Tunnel"
         from Tunnel import create_tunnel
         create_tunnel(dis, dis_width, dis_height, snake_block, font_size, barrier_grid)
+
+    elif configs["Game"]["Type"] == 3:
+        score_file_name = "high_score_rail.txt"
+        game_type = "Rail"
+        from Rail import create_rail
+        create_rail(dis, dis_width, dis_height, snake_block, font_size, barrier_grid)
     
     food = init_food(dis_width, dis_height, font_size, snake_block, barrier_grid)
     
