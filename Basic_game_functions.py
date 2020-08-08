@@ -1,5 +1,5 @@
 ## Created by : Sumudu Madushanka
-## Last update : 8/5/2020
+## Last update : 8/8/2020
 
 import pygame
 from time import sleep
@@ -73,6 +73,7 @@ def change_game_level(dis, configs, config_file_name):
 # Show High score
 def high_score(dis, game_type, bg_colour, font_color, font_size, dis_width, dis_height):
     show = True
+    game_types = ["No Barrier", "Box Barrier", "Tunnel", "Rail"]
     if game_type == 0:
         score_file_name = "high_score_no_barrier.txt"
     elif game_type == 1:
@@ -91,7 +92,8 @@ def high_score(dis, game_type, bg_colour, font_color, font_size, dis_width, dis_
         except IOError:
             high_score = 0
 
-        message(dis, font_size, "High Score : " + str(high_score), font_color, bg_colour, dis_width/3, (dis_height - font_size)/3)
+        message(dis, font_size, game_types[game_type], font_color, bg_colour, dis_width/3, (dis_height - font_size)/3)
+        message(dis, font_size, "High Score : " + str(high_score), font_color, bg_colour, dis_width/3, (dis_height - font_size)/3 + font_size)
         pygame.display.update()
 
         for event in pygame.event.get():
