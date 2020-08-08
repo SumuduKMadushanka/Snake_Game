@@ -35,6 +35,11 @@
             238,
             144
         ],
+        "DarkGreen": [
+            0,
+            100,
+            0
+        ],
         "Blue": [
             0,
             0,
@@ -90,6 +95,14 @@
                 "Score": "Yellow",
                 "Background": "Black",
                 "Barrier": "Red"
+            },
+            {
+                "Snake": "DarkBlue",
+                "Food": "Yellow",
+                "Type": "Black",
+                "Score": "Yellow",
+                "Background": "LightGreen",
+                "Barrier": "DarkGreen"
             }
         ]
     }

@@ -1,0 +1,45 @@
+2020-08-08T16:45:00.679160||Snake Game Log
+2020-08-08T16:45:00.680158||Log File Created
+2020-08-08T16:45:00.680158||Import basic game funcrions
+2020-08-08T16:45:00.680158||Loading Configurations...
+2020-08-08T16:45:00.681159||Load Configurations Completed
+2020-08-08T16:45:01.179921||pygame init completed
+2020-08-08T16:45:01.180921||Start Global Variables init...
+2020-08-08T16:45:01.327470||Display init completed
+2020-08-08T16:45:01.328461||Colour Init Completed
+2020-08-08T16:45:01.328461||Font Init Completed
+2020-08-08T16:45:01.328461||Clock init completed
+2020-08-08T16:45:01.328461||Global Variables init completed
+2020-08-08T16:45:01.328461||Starting Game...
+2020-08-08T16:45:01.329458||Start Init Game variables...
+2020-08-08T16:45:01.329458||Init Game variables Completed
+2020-08-08T16:45:02.992713||Select Game Type
+2020-08-08T16:45:03.733727||Select No Barrier
+2020-08-08T16:45:04.535065||Select Start Game
+2020-08-08T16:46:02.303211||Select Game Type
+2020-08-08T16:46:03.101103||Select Box Barrier
+2020-08-08T16:46:03.101103||Changed the configurations
+2020-08-08T16:46:03.965133||Select Start Game
+2020-08-08T16:46:19.556675||Select Game Type
+2020-08-08T16:46:21.204414||Select Box Barrier
+2020-08-08T16:46:22.000214||Select Start Game
+2020-08-08T16:46:31.400909||Select Game Type
+2020-08-08T16:46:32.373368||Select Tunnel
+2020-08-08T16:46:32.373368||Changed the configurations
+2020-08-08T16:46:33.831182||Select Start Game
+2020-08-08T16:47:10.326125||Select Game Type
+2020-08-08T16:47:11.837668||Select Rail
+2020-08-08T16:47:11.838625||Changed the configurations
+2020-08-08T16:47:13.340924||Select Start Game
+2020-08-08T16:47:23.636365||Select Start Game
+2020-08-08T16:47:45.117123||Select High Score
+2020-08-08T16:47:46.630141||Select Level
+2020-08-08T16:47:47.068759||Level 3
+2020-08-08T16:47:47.830501||Select Game Type
+2020-08-08T16:47:49.220780||Select No Barrier
+2020-08-08T16:47:49.221744||Changed the configurations
+2020-08-08T16:47:50.377652||Select Quit Game
+2020-08-08T16:47:50.377652||Quiting the Game...
+2020-08-08T16:47:50.724380||Game Quit
+2020-08-08T16:47:50.725377||Game finished
+2020-08-08T16:47:50.725377||Log finished

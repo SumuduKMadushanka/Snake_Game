@@ -24,6 +24,7 @@ def load_configs(config_file_name):
                              "Red" : (255, 0, 0),
                              "Green" : (0, 255, 0),
                              "LightGreen" : (144, 238, 144),
+                             "DarkGreen" : (0, 100, 0),
                              "Blue" : (0, 0, 255),
                              "DarkBlue" : (0, 0, 139)}
         configs["Font"] = {"Size" : 30}
@@ -63,6 +64,14 @@ def load_configs(config_file_name):
                                    "Score" : "Yellow",
                                    "Background" : "Black",
                                    "Barrier" : "Red"
+                               },
+                               {
+                                   "Snake" : "DarkBlue",
+                                   "Food" : "Yellow",
+                                   "Type" : "Black",
+                                   "Score" : "Yellow",
+                                   "Background" : "LightGreen",
+                                   "Barrier" : "DarkGreen"
                                }
                            ]}
         

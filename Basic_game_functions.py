@@ -16,7 +16,7 @@ def change_game_type(dis, configs, config_file_name):
     while not change_item:
         dis.fill(configs["Colour"]["White"])
         message(dis, configs["Font"]["Size"], "Game Type", configs["Colour"]["Green"], configs["Colour"]["White"], configs["Display"]["Width"]/3, ((configs["Display"]["Height"] - configs["Font"]["Size"])/3 + configs["Font"]["Size"]))
-        item_list = ["No Barrier", "Box Barrier", "Tunnel", "Rail"]
+        item_list = ["No Barrier", "Box Barrier", "Tunnel", "Rail", "Mill"]
         for i in range(len(item_list)):
             if (select_item == i):
                 f_colour = configs["Colour"]["White"]
@@ -73,7 +73,7 @@ def change_game_level(dis, configs, config_file_name):
 # Show High score
 def high_score(dis, game_type, bg_colour, font_color, font_size, dis_width, dis_height):
     show = True
-    game_types = ["No Barrier", "Box Barrier", "Tunnel", "Rail"]
+    game_types = ["No Barrier", "Box Barrier", "Tunnel", "Rail", "Mill"]
     if game_type == 0:
         score_file_name = "high_score_no_barrier.txt"
     elif game_type == 1:
@@ -82,6 +82,8 @@ def high_score(dis, game_type, bg_colour, font_color, font_size, dis_width, dis_
         score_file_name = "high_score_tunnel.txt"
     elif game_type == 3:
         score_file_name = "high_score_rail.txt"
+    elif game_type == 4:
+        score_file_name = "high_score_mill.txt"
         
     while show:
         dis.fill(bg_colour)
@@ -184,7 +186,7 @@ def game_loop_no_barrier(dis, configs, clock):
 
     food = init_food_no_barrier(dis_width, dis_height, font_size, snake_block)
     
-    direction = [False, False, False, True]    #[Left, Up, Down, Right]
+    direction = [False, False, False, False]    #[Left, Up, Down, Right]
 
     #Game loop
     while not game_close:
@@ -326,10 +328,16 @@ def game_loop(dis, configs, clock):
         game_type = "Rail"
         from Rail import create_rail
         create_rail(dis, dis_width, dis_height, snake_block, font_size, barrier_grid)
+
+    elif configs["Game"]["Type"] == 4:
+        score_file_name = "high_score_mill.txt"
+        game_type = "Mill"
+        from Mill import create_mill
+        create_mill(dis, dis_width, dis_height, snake_block, font_size, barrier_grid)
     
     food = init_food(dis_width, dis_height, font_size, snake_block, barrier_grid)
     
-    direction = [False, False, False, True]    # [Left, Up, Down, Right]
+    direction = [False, False, False, False]    # [Left, Up, Down, Right]
 
     # Game loop
     while not game_close:
