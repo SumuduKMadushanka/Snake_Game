@@ -182,7 +182,7 @@ def game_loop_no_barrier(dis, configs, clock):
 
     food = init_food_no_barrier(dis_width, dis_height, font_size, snake_block)
     
-    direction = [False, False, False, False]    #[Left, Up, Down, Right]
+    direction = [False, False, False, True]    #[Left, Up, Down, Right]
 
     #Game loop
     while not game_close:
@@ -261,6 +261,7 @@ def game_loop_no_barrier(dis, configs, clock):
     message(dis, font_size, "Game Over!", game_over_colour, font_bg_colour, dis_width/3, ((dis_height - font_size)/3 + 2 * font_size))
     pygame.display.update()
     sleep(2)
+    pygame.event.clear()
 
 # Game Function
 def game_loop(dis, configs, clock):
@@ -319,7 +320,7 @@ def game_loop(dis, configs, clock):
     
     food = init_food(dis_width, dis_height, font_size, snake_block, barrier_grid)
     
-    direction = [False, False, False, False]    # [Left, Up, Down, Right]
+    direction = [False, False, False, True]    # [Left, Up, Down, Right]
 
     # Game loop
     while not game_close:
@@ -401,3 +402,4 @@ def game_loop(dis, configs, clock):
     message(dis, font_size, "Game Over!", game_over_colour, font_bg_colour, dis_width/3, ((dis_height - font_size)/3 + 2 * font_size))
     pygame.display.update()
     sleep(2)
+    pygame.event.clear()
