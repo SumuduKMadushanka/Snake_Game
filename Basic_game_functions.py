@@ -193,15 +193,22 @@ def game_loop_no_barrier(dis, configs, clock):
             if event.type == pygame.QUIT:
                 game_close = True
                 game_over_time = 0
+                break
             elif event.type == pygame.KEYUP:
                 if (event.key == pygame.K_LEFT or event.key == pygame.K_a or event.key == pygame.K_KP4) and not direction[3]:
                     direction = [True, False, False, False]
+                    break
                 elif (event.key == pygame.K_RIGHT or event.key == pygame.K_d or event.key == pygame.K_KP6) and not direction[0]:
                     direction = [False, False, False, True]
+                    break
                 elif (event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_KP8) and not direction[2]:
                     direction = [False, True, False, False]
+                    break
                 elif (event.key == pygame.K_DOWN or event.key == pygame.K_s or event.key == pygame.K_KP2) and not direction[1]:
                     direction = [False, False, True, False]
+                    break
+
+        pygame.event.clear()
 
         if direction[0]:
             x -= snake_block
@@ -331,15 +338,22 @@ def game_loop(dis, configs, clock):
             if event.type == pygame.QUIT:
                 game_close = True
                 game_over_time = 0
+                break
             elif event.type == pygame.KEYUP:
                 if (event.key == pygame.K_LEFT or event.key == pygame.K_a or event.key == pygame.K_KP4) and not direction[3]:
                     direction = [True, False, False, False]
+                    break
                 elif (event.key == pygame.K_RIGHT or event.key == pygame.K_d or event.key == pygame.K_KP6) and not direction[0]:
                     direction = [False, False, False, True]
+                    break
                 elif (event.key == pygame.K_UP or event.key == pygame.K_w or event.key == pygame.K_KP8) and not direction[2]:
                     direction = [False, True, False, False]
+                    break
                 elif (event.key == pygame.K_DOWN or event.key == pygame.K_s or event.key == pygame.K_KP2) and not direction[1]:
                     direction = [False, False, True, False]
+                    break
+
+        pygame.event.clear()
 
         if direction[0]:
             x -= snake_block
@@ -364,6 +378,9 @@ def game_loop(dis, configs, clock):
             y = font_size + 10
         elif y < font_size + 10:
             y = dis_height - snake_block
+        
+        if [x, y] in barrier_grid:
+            game_close = True
                 
         message(dis, font_size, "Your Score : " + str(score), score_colour, bg_colour, dis_width - 200, 0)    # Display realtime score
         
