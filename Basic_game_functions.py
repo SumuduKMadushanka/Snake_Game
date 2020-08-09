@@ -1,5 +1,5 @@
 ## Created by : Sumudu Madushanka
-## Last update : 8/8/2020
+## Last update : 8/9/2020
 
 import pygame
 from time import sleep
@@ -15,7 +15,7 @@ def change_game_type(dis, configs, config_file_name):
     change_item = False
     while not change_item:
         dis.fill(configs["Colour"]["White"])
-        message(dis, configs["Font"]["Size"], "Game Type", configs["Colour"]["Green"], configs["Colour"]["White"], configs["Display"]["Width"]/3, ((configs["Display"]["Height"] - configs["Font"]["Size"])/3 + configs["Font"]["Size"]))
+        message(dis, (2 * configs["Font"]["Size"]), "Game Type", configs["Colour"]["Green"], configs["Colour"]["White"], configs["Display"]["Width"]/4, (configs["Display"]["Height"] - configs["Font"]["Size"])/4)
         item_list = ["No Barrier", "Box Barrier", "Tunnel", "Rail", "Mill"]
         for i in range(len(item_list)):
             if (select_item == i):
@@ -50,8 +50,12 @@ def change_game_level(dis, configs, config_file_name):
     changed = False
     while not changed:
         dis.fill(configs["Colour"]["White"])
-        message(dis, configs["Font"]["Size"], "Game Level " + str(level), configs["Colour"]["Green"], configs["Colour"]["White"], configs["Display"]["Width"]//3, ((configs["Display"]["Height"] - configs["Font"]["Size"])//3 + configs["Font"]["Size"]))
+        message(dis, (2 * configs["Font"]["Size"]), "Game Level", configs["Colour"]["Green"], configs["Colour"]["White"], configs["Display"]["Width"]//4, (configs["Display"]["Height"] - configs["Font"]["Size"])//4)
+        message(dis, configs["Font"]["Size"], "Level: " + str(level), configs["Colour"]["Blue"], configs["Colour"]["White"], configs["Display"]["Width"]//3, ((configs["Display"]["Height"] - configs["Font"]["Size"])//3 + configs["Font"]["Size"]))
         pygame.draw.rect(dis, configs["Colour"]["Blue"], [configs["Display"]["Width"]//3, ((configs["Display"]["Height"] - configs["Font"]["Size"])//3 + (2 * configs["Font"]["Size"])), 25 * level, 20])
+
+        if level < 5:
+            pygame.draw.rect(dis, configs["Colour"]["LightBlue"], [configs["Display"]["Width"]//3 + (25 * level), ((configs["Display"]["Height"] - configs["Font"]["Size"])//3 + (2 * configs["Font"]["Size"])), (25 * (5 - level)), 20])
 
         pygame.display.update()
 
@@ -71,7 +75,7 @@ def change_game_level(dis, configs, config_file_name):
                     changed = True
 
 # Show High score
-def high_score(dis, game_type, bg_colour, font_color, font_size, dis_width, dis_height):
+def high_score(dis, game_type, bg_colour, title_coolour, font_colour, font_size, dis_width, dis_height):
     show = True
     game_types = ["No Barrier", "Box Barrier", "Tunnel", "Rail", "Mill"]
     if game_type == 0:
@@ -94,8 +98,9 @@ def high_score(dis, game_type, bg_colour, font_color, font_size, dis_width, dis_
         except IOError:
             high_score = 0
 
-        message(dis, font_size, game_types[game_type], font_color, bg_colour, dis_width/3, (dis_height - font_size)/3)
-        message(dis, font_size, "High Score : " + str(high_score), font_color, bg_colour, dis_width/3, (dis_height - font_size)/3 + font_size)
+        message(dis, (2 * font_size), "High Score", title_coolour, bg_colour, dis_width/4, (dis_height - font_size)/4)
+        message(dis, font_size, game_types[game_type], title_coolour, bg_colour, dis_width/3, (dis_height - font_size)/3 + font_size)
+        message(dis, font_size, str(high_score), font_colour, bg_colour, dis_width/3, (dis_height - font_size)/3 + (2 * font_size))
         pygame.display.update()
 
         for event in pygame.event.get():
@@ -234,6 +239,8 @@ def game_loop_no_barrier(dis, configs, clock):
             y = dis_height - snake_block
                 
         message(dis, font_size, "Your Score : " + str(score), score_colour, bg_colour, dis_width - 200, 0)     # Display realtime score
+
+        pygame.draw.rect(dis, type_colour, [0, font_size + 5, dis_width, 5])
         
         pygame.draw.rect(dis, food_colour, [food[0], food[1], snake_block, snake_block])  # Food
 
@@ -392,6 +399,8 @@ def game_loop(dis, configs, clock):
                 
         message(dis, font_size, "Your Score : " + str(score), score_colour, bg_colour, dis_width - 200, 0)    # Display realtime score
         
+        pygame.draw.rect(dis, type_colour, [0, font_size + 5, dis_width, 5])
+
         pygame.draw.rect(dis, food_colour, [food[0], food[1], snake_block, snake_block])  # Food
 
         # Creating snake

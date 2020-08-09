@@ -1,5 +1,5 @@
 ## Created by : Sumudu Madushanka
-## Last update : 8/5/2020
+## Last update : 8/9/2020
 
 from log import *
 from Config import *
@@ -55,7 +55,7 @@ def main_loop():
 
     while not game_over:
         dis.fill(white)
-        message(dis, font_size, "Snake Game", green, white, dis_width//3, ((dis_height - font_size)//3 + font_size))
+        message(dis, (2 * font_size), "Snake Game", green, white, dis_width//4, (dis_height - font_size)//4)
         item_list = ["Start Game", "Game Type", "Level", "High Score", "Quit Game"]
         for i in range(len(item_list)):
             if (select_item == i):
@@ -92,7 +92,7 @@ def main_loop():
                     elif select_item == 2:
                         change_game_level(dis, configs, config_file_name)
                     elif select_item == 3:
-                        high_score(dis, configs["Game"]["Type"], white, blue, font_size, dis_width, dis_height)
+                        high_score(dis, configs["Game"]["Type"], white, green, blue, font_size, dis_width, dis_height)
                         
     log_write("Quiting the Game...\n")
     pygame.quit()

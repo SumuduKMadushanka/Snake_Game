@@ -1,5 +1,5 @@
 ## Created by : Sumudu Madushanka
-## Last update : 8/5/2020
+## Last update : 8/9/2020
 
 import json
 from log import log_write
@@ -26,6 +26,7 @@ def load_configs(config_file_name):
                              "LightGreen" : (144, 238, 144),
                              "DarkGreen" : (0, 100, 0),
                              "Blue" : (0, 0, 255),
+                             "LightBlue" : (173, 216, 230),
                              "DarkBlue" : (0, 0, 139)}
         configs["Font"] = {"Size" : 30}
         configs["Snake"] = {"Block" : 10}
