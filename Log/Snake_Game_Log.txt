@@ -1,51 +1,21 @@
-2020-08-09T10:57:13.265409||Snake Game Log
-2020-08-09T10:57:13.265409||Log File Created
-2020-08-09T10:57:13.266407||Import basic game funcrions
-2020-08-09T10:57:13.266407||Loading Configurations...
-2020-08-09T10:57:13.266407||Load Configurations Completed
-2020-08-09T10:57:13.562907||pygame init completed
-2020-08-09T10:57:13.562907||Start Global Variables init...
-2020-08-09T10:57:13.699521||Display init completed
-2020-08-09T10:57:13.699521||Colour Init Completed
-2020-08-09T10:57:13.699521||Font Init Completed
-2020-08-09T10:57:13.699521||Clock init completed
-2020-08-09T10:57:13.700517||Global Variables init completed
-2020-08-09T10:57:13.700517||Starting Game...
-2020-08-09T10:57:13.700517||Start Init Game variables...
-2020-08-09T10:57:13.700517||Init Game variables Completed
-2020-08-09T10:57:15.000661||Select High Score
-2020-08-09T10:57:17.936627||Select Level
-2020-08-09T10:57:18.510299||Level 3
-2020-08-09T10:57:19.583633||Select Level
-2020-08-09T10:57:22.573868||Level 3
-2020-08-09T10:57:23.721812||Select Game Type
-2020-08-09T10:57:25.032815||Select No Barrier
-2020-08-09T10:57:25.855567||Select Start Game
-2020-08-09T10:57:59.976229||Select Game Type
-2020-08-09T10:58:00.663005||Select Box Barrier
-2020-08-09T10:58:00.663963||Changed the configurations
-2020-08-09T10:58:01.510729||Select Start Game
-2020-08-09T10:58:12.657199||Select Game Type
-2020-08-09T10:58:13.368871||Select Tunnel
-2020-08-09T10:58:13.370836||Changed the configurations
-2020-08-09T10:58:14.209586||Select Start Game
-2020-08-09T10:58:39.469381||Select Level
-2020-08-09T10:58:40.053001||Level 3
-2020-08-09T10:58:42.077799||Select High Score
-2020-08-09T10:58:43.935685||Select Game Type
-2020-08-09T10:58:44.479471||Select Rail
-2020-08-09T10:58:44.480473||Changed the configurations
-2020-08-09T10:58:45.469395||Select Start Game
-2020-08-09T10:59:01.750673||Select Game Type
-2020-08-09T10:59:02.597446||Select Mill
-2020-08-09T10:59:02.598405||Changed the configurations
-2020-08-09T10:59:03.775366||Select Start Game
-2020-08-09T10:59:16.023220||Select Game Type
-2020-08-09T10:59:17.542372||Select No Barrier
-2020-08-09T10:59:17.543333||Changed the configurations
-2020-08-09T10:59:20.047827||Select High Score
-2020-08-09T10:59:22.477352||Select Quit Game
-2020-08-09T10:59:22.477352||Quiting the Game...
-2020-08-09T10:59:22.832991||Game Quit
-2020-08-09T10:59:22.832991||Game finished
-2020-08-09T10:59:22.833989||Log finished
+2020-08-10T13:24:21.829923||Snake Game Log
+2020-08-10T13:24:21.830919||Log File Created
+2020-08-10T13:24:21.830919||Import basic game funcrions
+2020-08-10T13:24:21.831922||Loading Configurations...
+2020-08-10T13:24:21.832773||Load Configurations Completed
+2020-08-10T13:24:22.297498||pygame init completed
+2020-08-10T13:24:22.298142||Start Global Variables init...
+2020-08-10T13:24:22.508938||Display init completed
+2020-08-10T13:24:22.508938||Colour Init Completed
+2020-08-10T13:24:22.509778||Font Init Completed
+2020-08-10T13:24:22.509778||Clock init completed
+2020-08-10T13:24:22.509778||Global Variables init completed
+2020-08-10T13:24:22.510350||Starting Game...
+2020-08-10T13:24:22.510350||Start Init Game variables...
+2020-08-10T13:24:22.510350||Init Game variables Completed
+2020-08-10T13:24:23.478120||Select Start Game
+2020-08-10T13:24:30.759116||Select Quit Game
+2020-08-10T13:24:30.759116||Quiting the Game...
+2020-08-10T13:24:31.177931||Game Quit
+2020-08-10T13:24:31.178929||Game finished
+2020-08-10T13:24:31.178929||Log finished

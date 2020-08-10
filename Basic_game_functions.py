@@ -1,7 +1,8 @@
 ## Created by : Sumudu Madushanka
-## Last update : 8/9/2020
+## Last update : 8/10/2020
 
 import pygame
+import json
 from time import sleep
 from random import randrange
 from log import log_write
@@ -77,30 +78,48 @@ def change_game_level(dis, configs, config_file_name):
 # Show High score
 def high_score(dis, game_type, bg_colour, title_coolour, font_colour, font_size, dis_width, dis_height):
     show = True
-    game_types = ["No Barrier", "Box Barrier", "Tunnel", "Rail", "Mill"]
-    if game_type == 0:
-        score_file_name = "high_score_no_barrier.txt"
-    elif game_type == 1:
-        score_file_name = "high_score_box_barrier.txt"
-    elif game_type == 2:
-        score_file_name = "high_score_tunnel.txt"
-    elif game_type == 3:
-        score_file_name = "high_score_rail.txt"
-    elif game_type == 4:
-        score_file_name = "high_score_mill.txt"
+    game_type_list = ["No Barrier", "Box Barrier", "Tunnel", "Rail", "Mill"]
+    score_file_name = "high_score.json"
+
+    try:
+        high_score_file = open(score_file_name, "r")
+        high_score_dict = json.load(high_score_file)
+        high_score_file.close()
+
+        high_score_list = high_score_dict[game_type_list[game_type]]
+        
+    except FileNotFoundError:
+        high_score_dict = {}
+        for g_type in game_type_list:
+            high_score_dict[g_type] = [0 for i in range(5)]
+        
+        high_score_file = open(score_file_name, "w")
+        json.dump(high_score_dict, high_score_file, indent = 4)
+        high_score_file.close()
+
+        high_score_list = high_score_dict[game_type_list[game_type]]
+
+    except KeyError:
+        high_score_file = open(score_file_name, "r")
+        high_score_dict = json.load(high_score_file)
+        high_score_file.close()
+
+        high_score_dict[game_type_list[game_type]] = [0 for i in range(5)]
+        high_score_file = open(score_file_name, "w")
+        json.dump(high_score_dict, high_score_file, indent = 4)
+        high_score_file.close()
+
+        high_score_list = high_score_dict[game_type_list[game_type]]
         
     while show:
         dis.fill(bg_colour)
-        try:
-            score_file = open(score_file_name, "r")
-            high_score = int(score_file.read())
-            score_file.close()
-        except IOError:
-            high_score = 0
 
         message(dis, (2 * font_size), "High Score", title_coolour, bg_colour, dis_width/4, (dis_height - font_size)/4)
-        message(dis, font_size, game_types[game_type], title_coolour, bg_colour, dis_width/3, (dis_height - font_size)/3 + font_size)
-        message(dis, font_size, str(high_score), font_colour, bg_colour, dis_width/3, (dis_height - font_size)/3 + (2 * font_size))
+        message(dis, font_size, game_type_list[game_type], title_coolour, bg_colour, dis_width/3, (dis_height - font_size)/3 + font_size)
+        
+        for i in range(5):
+            message(dis, font_size, str(i + 1) + ") " + str(high_score_list[i]), font_colour, bg_colour, dis_width/3, (dis_height - font_size)/3 + ((2 + i) * font_size))
+        
         pygame.display.update()
 
         for event in pygame.event.get():
@@ -108,26 +127,59 @@ def high_score(dis, game_type, bg_colour, title_coolour, font_colour, font_size,
                 show = False
 
 # Update High Score
-def update_high_score(dis, dis_width, dis_height, score_file_name, score, font_size, font_colour, bg_colour):
-    high_score_flag = False
+def update_high_score(dis, dis_width, dis_height, score, game_type, font_size, font_colour, bg_colour):
+    game_type_list = ["No Barrier", "Box Barrier", "Tunnel", "Rail", "Mill"]
+    score_file_name = "high_score.json"
     try:
-        score_file = open(score_file_name, "r")
-        high_score = int(score_file.read())
-        score_file.close()
-    except IOError:
-        high_score = 0
-        
-    if score > high_score or high_score_flag:
-        message(dis, font_size, "High Score : " + str(score), font_colour, bg_colour, dis_width/3, (dis_height - font_size)/3 + font_size)
-        high_score = score
-        high_score_flag = True
-    else:
-        message(dis, font_size, "Your Score : " + str(score), font_colour, bg_colour, dis_width/3, (dis_height - font_size)/3 + font_size)
-        high_score_flag = False
+        high_score_file = open(score_file_name, "r")
+        high_score_dict = json.load(high_score_file)
+        high_score_file.close()
 
-    score_file = open(score_file_name, "w")
-    score_file.write(str(high_score))
-    score_file.close()
+        high_score_list = high_score_dict[game_type_list[game_type]]
+
+    except FileNotFoundError:
+        high_score_dict = {}
+        for g_type in game_type_list:
+            high_score_dict[g_type] = [0 for i in range(5)]
+        
+        high_score_file = open(score_file_name, "w")
+        json.dump(high_score_dict, high_score_file, indent = 4)
+        high_score_file.close()
+
+        high_score_list = high_score_dict[game_type_list[game_type]]
+
+    except KeyError:
+        high_score_file = open(score_file_name, "r")
+        high_score_dict = json.load(high_score_file)
+        high_score_file.close()
+
+        high_score_dict[game_type_list[game_type]] = [0 for i in range(5)]
+        high_score_file = open(score_file_name, "w")
+        json.dump(high_score_dict, high_score_file, indent = 4)
+        high_score_file.close()
+
+        high_score_list = high_score_dict[game_type_list[game_type]]
+
+    place = 6
+    for i in range(5):
+        if score > high_score_list[i]:
+            high_score_list = high_score_list[:i] + [score] + high_score_list[i:4]
+            high_score_dict[game_type_list[game_type]] = high_score_list
+            place = i + 1
+            break
+
+    if place == 1:
+        message(dis, font_size, "Snake Master", font_colour, bg_colour, dis_width/3, (dis_height - font_size)/3 + font_size)
+    elif place < 6:
+        message(dis, font_size, "High Score", font_colour, bg_colour, dis_width/3, (dis_height - font_size)/3 + font_size)
+    else:
+        message(dis, font_size, "Your Score", font_colour, bg_colour, dis_width/3, (dis_height - font_size)/3 + font_size)
+
+    message(dis, font_size, str(score), font_colour, bg_colour, dis_width/3, (dis_height - font_size)/3 + (2 * font_size))
+
+    high_score_file = open(score_file_name, "w")
+    json.dump(high_score_dict, high_score_file, indent = 4)
+    high_score_file.close()
 
 # Draw the snake
 def draw_snake(dis, snake_block, snake_list, Snake_colour):
@@ -179,8 +231,6 @@ def game_loop_no_barrier(dis, configs, clock):
     # Score
     score = 0
     score_unit = configs["Game"]["Level"]
-    high_score_flag = False
-    score_file_name = "high_score_no_barrier.txt"
 
     # Initial state of the game
     x = int(dis_width // 2)
@@ -274,9 +324,9 @@ def game_loop_no_barrier(dis, configs, clock):
     sleep(game_over_time)
     # High Score
     dis.fill(font_bg_colour)
-    update_high_score(dis, dis_width, dis_height, score_file_name, score, font_size, font_colour, font_bg_colour)
+    update_high_score(dis, dis_width, dis_height, score, 0, font_size, font_colour, font_bg_colour)
 
-    message(dis, font_size, "Game Over!", game_over_colour, font_bg_colour, dis_width/3, ((dis_height - font_size)/3 + 2 * font_size))
+    message(dis, font_size, "Game Over!", game_over_colour, font_bg_colour, dis_width/3, ((dis_height - font_size)/3 + 3 * font_size))
     pygame.display.update()
     sleep(2)
     pygame.event.clear()
@@ -307,8 +357,6 @@ def game_loop(dis, configs, clock):
     # Score
     score = 0
     score_unit = configs["Game"]["Level"]
-    high_score_flag = False
-    score_file_name = ""
     
     # Initial state of the game
     x = int(dis_width // 2)
@@ -319,25 +367,21 @@ def game_loop(dis, configs, clock):
     Length_of_snake = 1
 
     if configs["Game"]["Type"] == 1:
-        score_file_name = "high_score_box_barrier.txt"
         game_type = "Box Barrier"
         from Box_barrier import create_box
         create_box(dis, dis_width, dis_height, snake_block, font_size, barrier_grid)
 
     elif configs["Game"]["Type"] == 2:
-        score_file_name = "high_score_tunnel.txt"
         game_type = "Tunnel"
         from Tunnel import create_tunnel
         create_tunnel(dis, dis_width, dis_height, snake_block, font_size, barrier_grid)
 
     elif configs["Game"]["Type"] == 3:
-        score_file_name = "high_score_rail.txt"
         game_type = "Rail"
         from Rail import create_rail
         create_rail(dis, dis_width, dis_height, snake_block, font_size, barrier_grid)
 
     elif configs["Game"]["Type"] == 4:
-        score_file_name = "high_score_mill.txt"
         game_type = "Mill"
         from Mill import create_mill
         create_mill(dis, dis_width, dis_height, snake_block, font_size, barrier_grid)
@@ -433,7 +477,7 @@ def game_loop(dis, configs, clock):
     sleep(game_over_time)
     # High Score
     dis.fill(font_bg_colour)
-    update_high_score(dis, dis_width, dis_height, score_file_name, score, font_size, font_colour, font_bg_colour)
+    update_high_score(dis, dis_width, dis_height, score, configs["Game"]["Type"], font_size, font_colour, font_bg_colour)
 
     message(dis, font_size, "Game Over!", game_over_colour, font_bg_colour, dis_width/3, ((dis_height - font_size)/3 + 2 * font_size))
     pygame.display.update()
