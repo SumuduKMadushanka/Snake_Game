@@ -1,5 +1,5 @@
 ## Created by : Sumudu Madushanka
-## Last update : 8/9/2020
+## Last update : 8/10/2020
 
 from log import *
 from Config import *
@@ -50,13 +50,13 @@ def main_loop():
     log_write("Start Init Game variables...\n")
     # Basic Variables
     game_over = False
+    item_list = ["Start Game", "Game Type", "Level", "High Score", "Quit Game"]
     select_item = 0
     log_write("Init Game variables Completed\n")
 
     while not game_over:
         dis.fill(white)
         message(dis, (2 * font_size), "Snake Game", green, white, dis_width//4, (dis_height - font_size)//4)
-        item_list = ["Start Game", "Game Type", "Level", "High Score", "Quit Game"]
         for i in range(len(item_list)):
             if (select_item == i):
                 f_colour = white
@@ -71,13 +71,16 @@ def main_loop():
             if event.type == pygame.QUIT:
                 log_write("Quit the Game\n")
                 game_over = True
+                break
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     tmp = select_item - 1
                     select_item = ((len(item_list) - 1) if tmp < 0 else tmp)
+                    break
                 elif event.key == pygame.K_DOWN:
                     tmp = select_item + 1
                     select_item = (0 if tmp > (len(item_list) - 1) else tmp)
+                    break
                 elif event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER:
                     log_write("Select " + item_list[select_item] + "\n")
                     if select_item == (len(item_list) - 1):
@@ -92,7 +95,9 @@ def main_loop():
                     elif select_item == 2:
                         change_game_level(dis, configs, config_file_name)
                     elif select_item == 3:
-                        high_score(dis, configs["Game"]["Type"], white, green, blue, font_size, dis_width, dis_height)
+                        high_score(dis, configs["Game"]["Type"], configs["Game"]["Type_List"], white, green, blue, font_size, dis_width, dis_height)
+                    break
+        pygame.event.clear()
                         
     log_write("Quiting the Game...\n")
     pygame.quit()

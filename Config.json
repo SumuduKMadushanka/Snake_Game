@@ -69,6 +69,13 @@
     "Game": {
         "Type": 0,
         "Level": 3,
+        "Type_List": [
+            "No Barrier",
+            "Box Barrier",
+            "Tunnel",
+            "Rail",
+            "Mill"
+        ],
         "Colour_Code": [
             {
                 "Snake": "Black",

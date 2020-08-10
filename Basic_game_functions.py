@@ -12,12 +12,12 @@ from Config import change_configs
 ### Basic Game Functions ###
 # Change the game type
 def change_game_type(dis, configs, config_file_name):
+    item_list = configs["Game"]["Type_List"]
     select_item = configs["Game"]["Type"]
     change_item = False
     while not change_item:
         dis.fill(configs["Colour"]["White"])
         message(dis, (2 * configs["Font"]["Size"]), "Game Type", configs["Colour"]["Green"], configs["Colour"]["White"], configs["Display"]["Width"]/4, (configs["Display"]["Height"] - configs["Font"]["Size"])/4)
-        item_list = ["No Barrier", "Box Barrier", "Tunnel", "Rail", "Mill"]
         for i in range(len(item_list)):
             if (select_item == i):
                 f_colour = configs["Colour"]["White"]
@@ -31,19 +31,24 @@ def change_game_type(dis, configs, config_file_name):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 change_item = True
+                break
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     tmp = select_item - 1
                     select_item = ((len(item_list) - 1) if tmp < 0 else tmp)
+                    break
                 elif event.key == pygame.K_DOWN:
                     tmp = select_item + 1
                     select_item = (0 if tmp > (len(item_list) - 1) else tmp)
+                    break
                 elif event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER:
                     log_write("Select " + item_list[select_item] + "\n")
                     if select_item != configs["Game"]["Type"]:
                         configs["Game"]["Type"] = select_item
                         change_configs(config_file_name, configs)
                     change_item = True
+                    break
+        pygame.event.clear()
 
 # Change the game level
 def change_game_level(dis, configs, config_file_name):
@@ -63,22 +68,26 @@ def change_game_level(dis, configs, config_file_name):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 changed = True
+                break
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP or event.key == pygame.K_RIGHT:
                     level = min(level + 1, 5)
+                    break
                 elif event.key == pygame.K_DOWN or event.key == pygame.K_LEFT:
                     level = max(level - 1, 1)
+                    break
                 elif event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER:
                     log_write("Level " + str(level) + "\n")
                     if level != configs["Game"]["Level"]:
                         configs["Game"]["Level"] = level
                         change_configs(config_file_name, configs)
                     changed = True
+                    break
+        pygame.event.clear()
 
 # Show High score
-def high_score(dis, game_type, bg_colour, title_coolour, font_colour, font_size, dis_width, dis_height):
+def high_score(dis, game_type, game_type_list, bg_colour, title_coolour, font_colour, font_size, dis_width, dis_height):
     show = True
-    game_type_list = ["No Barrier", "Box Barrier", "Tunnel", "Rail", "Mill"]
     score_file_name = "high_score.json"
 
     try:
@@ -125,10 +134,11 @@ def high_score(dis, game_type, bg_colour, title_coolour, font_colour, font_size,
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYUP and (event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER)):
                 show = False
+                break
+        pygame.event.clear()
 
 # Update High Score
-def update_high_score(dis, dis_width, dis_height, score, game_type, font_size, font_colour, bg_colour):
-    game_type_list = ["No Barrier", "Box Barrier", "Tunnel", "Rail", "Mill"]
+def update_high_score(dis, dis_width, dis_height, score, game_type, game_type_list, font_size, font_colour, bg_colour):
     score_file_name = "high_score.json"
     try:
         high_score_file = open(score_file_name, "r")
@@ -225,7 +235,6 @@ def game_loop_no_barrier(dis, configs, clock):
     font_size = configs["Font"]["Size"]
     font_colour = configs["Colour"]["Blue"]
     font_bg_colour = configs["Colour"]["White"]
-    game_over_colour = configs["Colour"]["Red"]
     # Snake
     snake_block = configs["Snake"]["Block"]
     # Score
@@ -243,9 +252,17 @@ def game_loop_no_barrier(dis, configs, clock):
     
     direction = [False, False, False, False]    #[Left, Up, Down, Right]
 
+    # Initial Display
+    dis.fill(bg_colour)
+    message(dis, font_size, "No barrier", type_colour, bg_colour, 10, 0)
+    message(dis, font_size, "Your Score : " + str(score), score_colour, bg_colour, dis_width - 200, 0)
+    pygame.draw.rect(dis, type_colour, [0, font_size + 5, dis_width, 5])
+    
     #Game loop
     while not game_close:
-        # Game Play
+        pygame.draw.rect(dis, food_colour, [food[0], food[1], snake_block, snake_block])  # Food
+        
+        # Game Play event handling
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_close = True
@@ -264,8 +281,10 @@ def game_loop_no_barrier(dis, configs, clock):
                 elif (event.key == pygame.K_DOWN or event.key == pygame.K_s or event.key == pygame.K_KP2) and not direction[1]:
                     direction = [False, False, True, False]
                     break
-
         pygame.event.clear()
+
+        # Snake
+        draw_snake(dis, snake_block, snake_List, bg_colour)     # Remove prev snake
 
         if direction[0]:
             x -= snake_block
@@ -275,9 +294,6 @@ def game_loop_no_barrier(dis, configs, clock):
             y += snake_block
         elif direction[3]:
             x += snake_block
-
-        dis.fill(bg_colour)
-        message(dis, font_size, "No barrier", type_colour, bg_colour, 10, 0)
         
         if x > dis_width - snake_block:
             x = 0
@@ -287,46 +303,39 @@ def game_loop_no_barrier(dis, configs, clock):
             y = font_size + 10
         elif y < font_size + 10:
             y = dis_height - snake_block
-                
-        message(dis, font_size, "Your Score : " + str(score), score_colour, bg_colour, dis_width - 200, 0)     # Display realtime score
-
-        pygame.draw.rect(dis, type_colour, [0, font_size + 5, dis_width, 5])
-        
-        pygame.draw.rect(dis, food_colour, [food[0], food[1], snake_block, snake_block])  # Food
 
         # Creating snake
-        snake_Head = []
-        snake_Head.append(x)
-        snake_Head.append(y)
+        snake_Head = [x, y]
         snake_List.append(snake_Head)
         
         if len(snake_List) > Length_of_snake:
             del snake_List[0]
+
+        draw_snake(dis, snake_block, snake_List, snake_colour)  # Draw snake current pos
 
         # Snake ate himself
         for cordinate in snake_List[:-1]:
             if cordinate == snake_Head:
                 game_close = True
 
-        draw_snake(dis, snake_block, snake_List, snake_colour)
-        
-        pygame.display.update()
-
         # Snake ate food
         if x == food[0] and y == food[1]:
-            food = init_food_no_barrier(dis_width, dis_height, font_size, snake_block)
+            message(dis, font_size, "Your Score : " + str(score), bg_colour, bg_colour, dis_width - 200, 0)     # Remove old score
+            pygame.draw.rect(dis, snake_colour, [food[0], food[1], snake_block, snake_block])                   # Remove food from frame
+            food = init_food_no_barrier(dis_width, dis_height, font_size, snake_block)                          # New food
             Length_of_snake += 1
             score += score_unit
+            message(dis, font_size, "Your Score : " + str(score), score_colour, bg_colour, dis_width - 200, 0)  # Display realtime score
 
+        pygame.display.update()
         clock.tick(score_unit * 5)
 
     # Game over
     sleep(game_over_time)
     # High Score
     dis.fill(font_bg_colour)
-    update_high_score(dis, dis_width, dis_height, score, 0, font_size, font_colour, font_bg_colour)
+    update_high_score(dis, dis_width, dis_height, score, 0, configs["Game"]["Type_List"], font_size, font_colour, font_bg_colour)
 
-    message(dis, font_size, "Game Over!", game_over_colour, font_bg_colour, dis_width/3, ((dis_height - font_size)/3 + 3 * font_size))
     pygame.display.update()
     sleep(2)
     pygame.event.clear()
@@ -351,7 +360,6 @@ def game_loop(dis, configs, clock):
     font_size = configs["Font"]["Size"]
     font_colour = configs["Colour"]["Blue"]
     font_bg_colour = configs["Colour"]["White"]
-    game_over_colour = configs["Colour"]["Red"]
     # Snake
     snake_block = configs["Snake"]["Block"]
     # Score
@@ -390,9 +398,18 @@ def game_loop(dis, configs, clock):
     
     direction = [False, False, False, False]    # [Left, Up, Down, Right]
 
+    # Initial Display
+    dis.fill(bg_colour)
+    message(dis, font_size, game_type, type_colour, bg_colour, 10, 0)
+    message(dis, font_size, "Your Score : " + str(score), score_colour, bg_colour, dis_width - 200, 0)
+    pygame.draw.rect(dis, type_colour, [0, font_size + 5, dis_width, 5])
+    draw_barrier(dis, snake_block, barrier_colour, barrier_grid)
+
     # Game loop
     while not game_close:
-        # Game Play
+        pygame.draw.rect(dis, food_colour, [food[0], food[1], snake_block, snake_block])  # Food
+        
+        # Game Play event handling
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game_close = True
@@ -411,8 +428,10 @@ def game_loop(dis, configs, clock):
                 elif (event.key == pygame.K_DOWN or event.key == pygame.K_s or event.key == pygame.K_KP2) and not direction[1]:
                     direction = [False, False, True, False]
                     break
-
         pygame.event.clear()
+
+        # Snake
+        draw_snake(dis, snake_block, snake_List, bg_colour)     # Remove prev snake
 
         if direction[0]:
             x -= snake_block
@@ -423,34 +442,26 @@ def game_loop(dis, configs, clock):
         elif direction[3]:
             x += snake_block
 
-        dis.fill(bg_colour)
-        draw_barrier(dis, snake_block, barrier_colour, barrier_grid)
-        message(dis, font_size, game_type, type_colour, bg_colour, 10, 0)
-
+        # Barrier Logic
         if [x, y] in barrier_grid:
             game_close = True
-        elif x > dis_width - snake_block:
-            x = 0
-        elif x < 0:
-            x = dis_width - snake_block
-        if y > dis_height - snake_block:
-            y = font_size + 10
-        elif y < font_size + 10:
-            y = dis_height - snake_block
-        
-        if [x, y] in barrier_grid:
-            game_close = True
+            
+        else:
+            if x > dis_width - snake_block:
+                x = 0
+            elif x < 0:
+                x = dis_width - snake_block
                 
-        message(dis, font_size, "Your Score : " + str(score), score_colour, bg_colour, dis_width - 200, 0)    # Display realtime score
-        
-        pygame.draw.rect(dis, type_colour, [0, font_size + 5, dis_width, 5])
-
-        pygame.draw.rect(dis, food_colour, [food[0], food[1], snake_block, snake_block])  # Food
+            if y > dis_height - snake_block:
+                y = font_size + 10
+            elif y < font_size + 10:
+                y = dis_height - snake_block
+            
+            if [x, y] in barrier_grid:
+                game_close = True
 
         # Creating snake
-        snake_Head = []
-        snake_Head.append(x)
-        snake_Head.append(y)
+        snake_Head = [x, y]
         snake_List.append(snake_Head)
         
         if len(snake_List) > Length_of_snake:
@@ -461,25 +472,26 @@ def game_loop(dis, configs, clock):
             if cordinate == snake_Head:
                 game_close = True
 
-        draw_snake(dis, snake_block, snake_List, snake_colour)
-        
-        pygame.display.update()
+        draw_snake(dis, snake_block, snake_List, snake_colour)  # Draw snake current pos
 
         # Snake ate food
         if x == food[0] and y == food[1]:
-            food = init_food(dis_width, dis_height, font_size, snake_block, barrier_grid)
+            message(dis, font_size, "Your Score : " + str(score), bg_colour, bg_colour, dis_width - 200, 0)     # Remove old score
+            pygame.draw.rect(dis, snake_colour, [food[0], food[1], snake_block, snake_block])                   # Remove food from frame
+            food = init_food(dis_width, dis_height, font_size, snake_block, barrier_grid)                       # New food
             Length_of_snake += 1
             score += score_unit
+            message(dis, font_size, "Your Score : " + str(score), score_colour, bg_colour, dis_width - 200, 0)  # Display realtime score
 
+        pygame.display.update()
         clock.tick(score_unit * 5)
 
     # Game over
     sleep(game_over_time)
     # High Score
     dis.fill(font_bg_colour)
-    update_high_score(dis, dis_width, dis_height, score, configs["Game"]["Type"], font_size, font_colour, font_bg_colour)
+    update_high_score(dis, dis_width, dis_height, score, configs["Game"]["Type"], configs["Game"]["Type_List"], font_size, font_colour, font_bg_colour)
 
-    message(dis, font_size, "Game Over!", game_over_colour, font_bg_colour, dis_width/3, ((dis_height - font_size)/3 + 2 * font_size))
     pygame.display.update()
     sleep(2)
     pygame.event.clear()

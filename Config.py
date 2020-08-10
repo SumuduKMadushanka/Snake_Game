@@ -1,5 +1,5 @@
 ## Created by : Sumudu Madushanka
-## Last update : 8/9/2020
+## Last update : 8/10/2020
 
 import json
 from log import log_write
@@ -34,6 +34,7 @@ def load_configs(config_file_name):
                               "Height" : 400 + configs["Font"]["Size"]}
         configs["Game"] = {"Type" : 0,
                            "Level" : 3,
+                           "Type_List" : ["No Barrier", "Box Barrier", "Tunnel", "Rail", "Mill"],
                            "Colour_Code" : [
                                {
                                    "Snake" : "Black",
