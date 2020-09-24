@@ -1,22 +1,24 @@
-2020-08-10T23:55:38.414367||Snake Game Log
-2020-08-10T23:55:38.415364||Log File Created
-2020-08-10T23:55:38.415364||Import basic game funcrions
-2020-08-10T23:55:38.415364||Loading Configurations...
-2020-08-10T23:55:38.416364||Load Configurations Completed
-2020-08-10T23:55:38.718302||pygame init completed
-2020-08-10T23:55:38.718302||Start Global Variables init...
-2020-08-10T23:55:38.874883||Display init completed
-2020-08-10T23:55:38.874883||Colour Init Completed
-2020-08-10T23:55:38.875880||Font Init Completed
-2020-08-10T23:55:38.875880||Clock init completed
-2020-08-10T23:55:38.875880||Global Variables init completed
-2020-08-10T23:55:38.875880||Starting Game...
-2020-08-10T23:55:38.876878||Start Init Game variables...
-2020-08-10T23:55:38.876878||Init Game variables Completed
-2020-08-10T23:55:40.934519||Select Start Game
-2020-08-10T23:56:01.975845||Select High Score
-2020-08-10T23:56:06.400943||Select Quit Game
-2020-08-10T23:56:06.400943||Quiting the Game...
-2020-08-10T23:56:06.752615||Game Quit
-2020-08-10T23:56:06.753612||Game finished
-2020-08-10T23:56:06.753612||Log finished
+2020-09-24T23:49:07.519514||Snake Game Log
+2020-09-24T23:49:07.520514||Log File Created
+2020-09-24T23:49:07.520514||Import basic game funcrions
+2020-09-24T23:49:07.520514||Loading Configurations...
+2020-09-24T23:49:07.521684||Load Configurations Completed
+2020-09-24T23:49:07.980508||pygame init completed
+2020-09-24T23:49:07.980508||Start Global Variables init...
+2020-09-24T23:49:08.088184||Display init completed
+2020-09-24T23:49:08.088184||Colour Init Completed
+2020-09-24T23:49:08.088184||Font Init Completed
+2020-09-24T23:49:08.088184||Clock init completed
+2020-09-24T23:49:08.088184||Global Variables init completed
+2020-09-24T23:49:08.089180||Starting Game...
+2020-09-24T23:49:08.089180||Start Init Game variables...
+2020-09-24T23:49:08.089180||Init Game variables Completed
+2020-09-24T23:49:10.566896||Select Start Game
+2020-09-24T23:49:14.583568||Select Game Type
+2020-09-24T23:49:17.295017||Select Level
+2020-09-24T23:49:19.184279||Select High Score
+2020-09-24T23:49:21.432976||Select Quit Game
+2020-09-24T23:49:21.433937||Quiting the Game...
+2020-09-24T23:49:21.689827||Game Quit
+2020-09-24T23:49:21.690825||Game finished
+2020-09-24T23:49:21.690825||Log finished

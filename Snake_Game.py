@@ -97,6 +97,38 @@ def main_loop():
                     elif select_item == 3:
                         high_score(dis, configs["Game"]["Type"], configs["Game"]["Type_List"], white, green, blue, font_size, dis_width, dis_height)
                     break
+            elif event.type == pygame.MOUSEMOTION:
+                m_pos = pygame.mouse.get_pos()
+                m_pos_x = m_pos[0]
+                m_pos_y = m_pos[1]
+                if (m_pos_x > 200) and (m_pos_x < 310):
+                    i = (m_pos_y - 190)//30
+                    if i >= 0 and i < len(item_list):
+                        select_item = i
+                break
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                m_clicked = pygame.mouse.get_pressed()
+                if m_clicked == (1, 0, 0):
+                    m_pos = pygame.mouse.get_pos()
+                    m_pos_x = m_pos[0]
+                    m_pos_y = m_pos[1]
+                    if (m_pos_x > 200) and (m_pos_x < 310) and (m_pos_y > 190) and (m_pos_y < (190 + len(item_list) * 30)):
+                        log_write("Select " + item_list[select_item] + "\n")
+                        if select_item == (len(item_list) - 1):
+                            game_over = True
+                        elif select_item == 0:
+                            if configs["Game"]["Type"] == 0:
+                                game_loop_no_barrier(dis, configs, clock)
+                            else:
+                                game_loop(dis, configs, clock)
+                        elif select_item == 1:
+                            change_game_type(dis, configs, config_file_name)
+                        elif select_item == 2:
+                            change_game_level(dis, configs, config_file_name)
+                        elif select_item == 3:
+                            high_score(dis, configs["Game"]["Type"], configs["Game"]["Type_List"], white, green, blue, font_size, dis_width, dis_height)
+                        print (event)
+                break
         pygame.event.clear()
                         
     log_write("Quiting the Game...\n")
