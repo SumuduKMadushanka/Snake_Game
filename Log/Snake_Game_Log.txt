@@ -1,28 +1,26 @@
-2020-09-25T14:00:42.439280||Snake Game Log
-2020-09-25T14:00:42.439280||Log File Created
-2020-09-25T14:00:42.439280||Import basic game funcrions
-2020-09-25T14:00:42.439280||Loading Configurations...
-2020-09-25T14:00:42.443165||Load Configurations Completed
-2020-09-25T14:00:43.025532||pygame init completed
-2020-09-25T14:00:43.026530||Start Global Variables init...
-2020-09-25T14:00:43.246650||Display init completed
-2020-09-25T14:00:43.246650||Colour Init Completed
-2020-09-25T14:00:43.247181||Font Init Completed
-2020-09-25T14:00:43.247181||Clock init completed
-2020-09-25T14:00:43.247181||Global Variables init completed
-2020-09-25T14:00:43.247181||Starting Game...
-2020-09-25T14:00:43.247181||Start Init Game variables...
-2020-09-25T14:00:43.248177||Init Game variables Completed
-2020-09-25T14:00:44.450645||Select Game Type
-2020-09-25T14:00:45.805704||Select Rail
-2020-09-25T14:00:45.806669||Changed the configurations
-2020-09-25T14:00:47.723837||Select Start Game
-2020-09-25T14:01:01.891112||Select Game Type
-2020-09-25T14:01:10.418602||Select No Barrier
-2020-09-25T14:01:10.419599||Changed the configurations
-2020-09-25T14:01:12.091190||Select Start Game
-2020-09-25T14:01:24.971605||Select Quit Game
-2020-09-25T14:01:24.972631||Quiting the Game...
-2020-09-25T14:01:25.333857||Game Quit
-2020-09-25T14:01:25.333857||Game finished
-2020-09-25T14:01:25.334858||Log finished
+2020-09-25T14:16:52.133199||Snake Game Log
+2020-09-25T14:16:52.133199||Log File Created
+2020-09-25T14:16:52.133199||Import basic game funcrions
+2020-09-25T14:16:52.133199||Loading Configurations...
+2020-09-25T14:16:52.133199||Load Configurations Completed
+2020-09-25T14:16:52.698008||pygame init completed
+2020-09-25T14:16:52.699079||Start Global Variables init...
+2020-09-25T14:16:52.897712||Display init completed
+2020-09-25T14:16:52.898402||Colour Init Completed
+2020-09-25T14:16:52.898402||Font Init Completed
+2020-09-25T14:16:52.899401||Clock init completed
+2020-09-25T14:16:52.899401||Global Variables init completed
+2020-09-25T14:16:52.899401||Starting Game...
+2020-09-25T14:16:52.899401||Start Init Game variables...
+2020-09-25T14:16:52.900422||Init Game variables Completed
+2020-09-25T14:16:54.564480||Select High Score
+2020-09-25T14:16:57.731480||Select Game Type
+2020-09-25T14:17:01.500245||Select No Barrier
+2020-09-25T14:17:04.587873||Select Start Game
+2020-09-25T14:17:10.010857||Select High Score
+2020-09-25T14:17:11.250534||Select Level
+2020-09-25T14:17:13.372688||Select Quit Game
+2020-09-25T14:17:13.372688||Quiting the Game...
+2020-09-25T14:17:13.685728||Game Quit
+2020-09-25T14:17:13.686722||Game finished
+2020-09-25T14:17:13.686722||Log finished

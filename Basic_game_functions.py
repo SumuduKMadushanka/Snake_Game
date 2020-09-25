@@ -154,7 +154,7 @@ def high_score(dis, game_type, game_type_list, bg_colour, title_coolour, font_co
         pygame.display.update()
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT or (event.type == pygame.KEYUP and (event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER)):
+            if event.type == pygame.QUIT or (event.type == pygame.KEYUP and (event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER)) or (event.type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pressed() == (1, 0, 0)):
                 show = False
                 break
         pygame.event.clear()
