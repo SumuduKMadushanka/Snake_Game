@@ -1,5 +1,5 @@
 ## Created by : Sumudu Madushanka
-## Last update : 8/10/2020
+## Last update : 9/25/2020
 
 import pygame
 import json
@@ -48,6 +48,28 @@ def change_game_type(dis, configs, config_file_name):
                         change_configs(config_file_name, configs)
                     change_item = True
                     break
+            elif event.type == pygame.MOUSEMOTION:
+                m_pos = pygame.mouse.get_pos()
+                m_pos_x = m_pos[0]
+                m_pos_y = m_pos[1]
+                if (m_pos_x > 200) and (m_pos_x < 315):
+                    i = (m_pos_y - 190)//30
+                    if i >= 0 and i < len(item_list):
+                        select_item = i
+                break
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                m_clicked = pygame.mouse.get_pressed()
+                if m_clicked == (1, 0, 0):
+                    m_pos = pygame.mouse.get_pos()
+                    m_pos_x = m_pos[0]
+                    m_pos_y = m_pos[1]
+                    if (m_pos_x > 200) and (m_pos_x < 315) and (m_pos_y > 190) and (m_pos_y < (190 + len(item_list) * 30)):
+                        log_write("Select " + item_list[select_item] + "\n")
+                        if select_item != configs["Game"]["Type"]:
+                            configs["Game"]["Type"] = select_item
+                            change_configs(config_file_name, configs)
+                        change_item = True
+                break
         pygame.event.clear()
 
 # Change the game level
