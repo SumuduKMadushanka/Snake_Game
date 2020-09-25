@@ -495,3 +495,24 @@ def game_loop(dis, configs, clock):
     pygame.display.update()
     sleep(2)
     pygame.event.clear()
+
+# Select Function in Main menu
+def select_function(dis, select_item, configs, config_file_name, clock):
+    dis_width = configs["Display"]["Width"]
+    dis_height = configs["Display"]["Height"]
+    white = configs["Colour"]["White"]
+    green = configs["Colour"]["Green"]
+    blue = configs["Colour"]["Blue"]
+    font_size = configs["Font"]["Size"]
+
+    if select_item == 0:
+        if configs["Game"]["Type"] == 0:
+            game_loop_no_barrier(dis, configs, clock)
+        else:
+            game_loop(dis, configs, clock)
+    elif select_item == 1:
+        change_game_type(dis, configs, config_file_name)
+    elif select_item == 2:
+        change_game_level(dis, configs, config_file_name)
+    elif select_item == 3:
+        high_score(dis, configs["Game"]["Type"], configs["Game"]["Type_List"], white, green, blue, font_size, dis_width, dis_height)

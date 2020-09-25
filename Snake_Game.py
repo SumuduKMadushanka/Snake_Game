@@ -1,10 +1,10 @@
 ## Created by : Sumudu Madushanka
-## Last update : 8/10/2020
+## Last update : 9/25/2020
 
 from log import *
 from Config import *
 from Message import *
-from Basic_game_functions import *
+from Basic_game_functions import select_function
 import pygame
 
 init_log_file()
@@ -85,17 +85,8 @@ def main_loop():
                     log_write("Select " + item_list[select_item] + "\n")
                     if select_item == (len(item_list) - 1):
                         game_over = True
-                    elif select_item == 0:
-                        if configs["Game"]["Type"] == 0:
-                            game_loop_no_barrier(dis, configs, clock)
-                        else:
-                            game_loop(dis, configs, clock)
-                    elif select_item == 1:
-                        change_game_type(dis, configs, config_file_name)
-                    elif select_item == 2:
-                        change_game_level(dis, configs, config_file_name)
-                    elif select_item == 3:
-                        high_score(dis, configs["Game"]["Type"], configs["Game"]["Type_List"], white, green, blue, font_size, dis_width, dis_height)
+                    else:
+                        select_function(dis, select_item, configs, config_file_name, clock)
                     break
             elif event.type == pygame.MOUSEMOTION:
                 m_pos = pygame.mouse.get_pos()
@@ -116,18 +107,8 @@ def main_loop():
                         log_write("Select " + item_list[select_item] + "\n")
                         if select_item == (len(item_list) - 1):
                             game_over = True
-                        elif select_item == 0:
-                            if configs["Game"]["Type"] == 0:
-                                game_loop_no_barrier(dis, configs, clock)
-                            else:
-                                game_loop(dis, configs, clock)
-                        elif select_item == 1:
-                            change_game_type(dis, configs, config_file_name)
-                        elif select_item == 2:
-                            change_game_level(dis, configs, config_file_name)
-                        elif select_item == 3:
-                            high_score(dis, configs["Game"]["Type"], configs["Game"]["Type_List"], white, green, blue, font_size, dis_width, dis_height)
-                        print (event)
+                        else:
+                            select_function(dis, select_item, configs, config_file_name, clock)
                 break
         pygame.event.clear()
                         
