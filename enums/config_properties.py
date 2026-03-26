@@ -1,0 +1,19 @@
+from enum import Enum
+
+class ConfigProperties(Enum):
+    FONT = "FONT"
+    SIZE = "SIZE"
+    SNAKE = "SNAKE"
+    BLOCK_SIZE = "BLOCK_SIZE"
+    DISPLAY = "DISPLAY"
+    WIDTH = "WIDTH"
+    HEIGHT = "HEIGHT"
+    DEFAULT_COLOUR_CODES = "DEFAULT_COLOUR_CODES"
+    FOOD = "FOOD"
+    TYPE = "TYPE"
+    SCORE = "SCORE"
+    BACKGROUND = "BACKGROUND"
+    BARRIER = "BARRIER"
+    GAME_DEFAULTS = "GAME_DEFAULTS"
+    GAME_TYPE = "GAME_TYPE"
+    LEVEL = "LEVEL"

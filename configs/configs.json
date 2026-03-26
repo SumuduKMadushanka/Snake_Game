@@ -1,0 +1,58 @@
+{
+    "FONT": {
+        "SIZE": 30
+    },
+    "BLOCK_SIZE": {
+        "SNAKE": 10
+    },
+    "DISPLAY": {
+        "WIDTH": 600,
+        "HEIGHT": 430
+    },
+    "DEFAULT_COLOUR_CODES": {
+        "No Barrier" : {
+            "SNAKE": "BLACK",
+            "FOOD": "GREEN",
+            "TYPE": "BLUE",
+            "SCORE": "GREEN",
+            "BACKGROUND": "WHITE",
+            "BARRIER": "N/A"
+        },
+        "Box Barrier" : {
+            "SNAKE": "BLACK",
+            "FOOD": "GREEN",
+            "TYPE": "BLUE",
+            "SCORE": "GREEN",
+            "BACKGROUND": "LIGHTYELLOW",
+            "BARRIER": "RED"
+        },
+        "Tunnel" : {
+            "SNAKE": "RED",
+            "FOOD": "YELLOW",
+            "TYPE": "BLACK",
+            "SCORE": "YELLOW",
+            "BACKGROUND": "LIGHTGREEN",
+            "BARRIER": "DARKBLUE"
+        },
+        "Rail" : {
+            "SNAKE": "GREEN",
+            "FOOD": "YELLOW",
+            "TYPE": "LIGHTYELLOW",
+            "SCORE": "YELLOW",
+            "BACKGROUND": "BLACK",
+            "BARRIER": "RED"
+        },
+        "Mill" : {
+            "SNAKE": "DARKBLUE",
+            "FOOD": "YELLOW",
+            "TYPE": "BLACK",
+            "SCORE": "YELLOW",
+            "BACKGROUND": "LIGHTGREEN",
+            "BARRIER": "DARKGREEN"
+        }
+    },
+    "GAME_DEFAULTS": {
+        "GAME_TYPE": "No Barrier",
+        "LEVEL": 3
+    }
+}
